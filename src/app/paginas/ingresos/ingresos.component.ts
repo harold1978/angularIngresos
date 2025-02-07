@@ -14,6 +14,8 @@ import { DbService } from '../../servicios/db.service';
 export class IngresosComponent {
 
   ingresos = signal<Iingresos[]>([]);
+  ingresoParaEditar = signal<Iingresos|null>(null);
+
 
    ingresoServicio = inject(DbService);
 
@@ -21,10 +23,17 @@ export class IngresosComponent {
     this.ingresoServicio.agregarIngreso({...ingreso})
     this.ingresos.set(this.ingresoServicio.getIngresos());
   }
+  editandolo(ingresoEditado:Iingresos){
+    this.ingresoServicio.actualizarIngreso(ingresoEditado);
+    this.ingresos.set(this.ingresoServicio.getIngresos());
+  }
   eliminaIngreso(id:string){
     this.ingresoServicio.eliminar(id);
     this.ingresos.set(this.ingresoServicio.getIngresos());
 
+  }
+  seleccionIngreso(ingreso:Iingresos){
+    this.ingresoParaEditar.set(ingreso);
   }
 
 }

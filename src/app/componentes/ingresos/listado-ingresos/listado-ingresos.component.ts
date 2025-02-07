@@ -13,11 +13,16 @@ import { DbService } from '../../../servicios/db.service';
 export class ListadoIngresosComponent {
 @Input() ingresos:Iingresos[]=[];
 @Output() idEliminado = new EventEmitter<string>();
+
+@Output() ingresoSeleccionado = new EventEmitter<Iingresos>();
+
 servicio = inject(DbService);
 
 eliminar(id:string){
   this.idEliminado.emit(id);
   alert("ELIMINANDO REGISTRO.....");
 }
-editar(ing:Iingresos){}
+editar(ing:Iingresos){
+  this.ingresoSeleccionado.emit(ing);
+}
 }

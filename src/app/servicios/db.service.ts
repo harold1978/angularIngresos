@@ -24,6 +24,10 @@ export class DbService {
       const aux = DbService.ingresos().filter(i=>i.id!==id);
       DbService.ingresos.set(aux);
     }
+    actualizarIngreso(ingreso:Iingresos){
+      const aux = DbService.ingresos().map((ing)=>ing.id==ingreso.id ? ingreso : ing);
+      DbService.ingresos.set(aux);
+    }
 
 
 }

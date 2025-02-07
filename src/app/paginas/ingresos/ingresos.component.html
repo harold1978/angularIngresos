@@ -1,7 +1,7 @@
 <h2>GESTION DE INGRESOS</h2>
 
-<app-frm-ingresos (ingresoAgregado)="agregarIngreso($event)" ></app-frm-ingresos>
+<app-frm-ingresos [ingresoParaEditar]="ingresoParaEditar()"  (ingresoAgregado)="agregarIngreso($event)" (editame)="editandolo($event)" ></app-frm-ingresos>
 
-<app-listado-ingresos [ingresos]="ingresos()" (idEliminado)="eliminaIngreso($event)"></app-listado-ingresos>
+<app-listado-ingresos  [ingresos]="ingresos()" (ingresoSeleccionado)="seleccionIngreso($event)" (idEliminado)="eliminaIngreso($event)"></app-listado-ingresos>
 
 
