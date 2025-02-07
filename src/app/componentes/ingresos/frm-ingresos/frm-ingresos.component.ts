@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Iingresos } from '../../../interfaces/iingresos';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -11,16 +11,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './frm-ingresos.component.css'
 })
 export class FrmIngresosComponent {
-  
+  @Output() ingresoAgregado = new EventEmitter<Iingresos>();
+
   ingresos:Iingresos[]=[];
 
   nuevoingreso:Iingresos={id:"",nombre:"",fecha:"",monto:0};
 
   agregaIngreso(){
-    if(this.nuevoingreso.id==""){
-      alert("COMPLETA TODOS LOS DATOS DEL FORMULARIO");
-      return;
-    }
     const item = this.ingresos.find(item=>item.id==this.nuevoingreso.id);
     if(item){
       const indice = this.ingresos.indexOf(item);
@@ -29,12 +26,12 @@ export class FrmIngresosComponent {
       this.limpiar();
       return;
     }
-    const {id,nombre,fecha,monto}=this.nuevoingreso;
-    
-    this.ingresos.push({...this.nuevoingreso});
+    //this.ingresos.push({...this.nuevoingreso});
+    this.ingresoAgregado.emit({...this.nuevoingreso});
     alert("INGRESO AGREGADO");
     this.limpiar();
   }
+
   limpiar(){
     this.nuevoingreso.id="";
     this.nuevoingreso.nombre="";
