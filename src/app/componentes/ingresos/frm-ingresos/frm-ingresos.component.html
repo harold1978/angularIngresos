@@ -25,6 +25,7 @@
           placeholder="NOMBRE DEL INGRESO"
           [(ngModel)]="nuevoingreso.nombre"
         />
+       <div *ngIf="nuevoingreso.nombre==''"><span>DEBES ESCRIBIR UN NOMBRE</span></div>
       </div>
     </div>
 
@@ -38,6 +39,7 @@
           id="fecha"
           [(ngModel)]="nuevoingreso.fecha"
         />
+        <div *ngIf="nuevoingreso.fecha==''"><span>DEBES ESCRIBIR UNA FECHA VALIDA</span></div>
       </div>
     </div>
 
@@ -81,8 +83,8 @@
         <tr class="table-primary">
           <td scope="row">{{ item.id }}</td>
           <td>{{ item.nombre }}</td>
-          <td>{{ item.fecha }}</td>
-          <td>{{ item.monto }}</td>
+          <td>{{ item.fecha | date:'dd-MM-yyyy' }}</td>
+          <td>{{ item.monto | currency:'¢' }}</td>
           <td>
             <button (click)="eliminar(item.id)" type="button" class="btn btn-danger btn-sm">ELIMINAR</button>
             <button (click)="editar(item.id)" type="button" class="btn btn-success btn-sm">EDITAR</button>

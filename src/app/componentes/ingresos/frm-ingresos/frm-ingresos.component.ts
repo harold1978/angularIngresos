@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Iingresos } from '../../../interfaces/iingresos';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-frm-ingresos',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './frm-ingresos.component.html',
   styleUrl: './frm-ingresos.component.css'
 })
